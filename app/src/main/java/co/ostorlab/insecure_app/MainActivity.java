@@ -10,6 +10,7 @@ import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.CommandExec;
 import co.ostorlab.insecure_app.bugs.calls.HashCall;
+import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
@@ -18,7 +19,10 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
 import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
+import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
+import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
@@ -70,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new ArrayCall());
         caller.addRule(new SQLiteDatabaseCall());
         // caller.addRule(new MemoryCorruption());
-
+        caller.addRule(new ParcelableMemoryCorruption());
+        caller.addRule(new SerializableMemoryCorruption());
+        caller.addRule(new PathTraversalVulnerability());
+        caller.addRule(new ImplicitPendingIntentVulnerability());
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());
