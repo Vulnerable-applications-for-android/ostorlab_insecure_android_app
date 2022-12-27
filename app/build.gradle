@@ -36,6 +36,7 @@ android {
             path "CMakeLists.txt"
         }
     }
+    android.ndkVersion  "23.2.8568313"
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
